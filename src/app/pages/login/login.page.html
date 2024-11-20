@@ -1,0 +1,16 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+    <img src="./../../../assets/carpool-isometric.png" alt="">
+    <ion-list style="width: 100%;">
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input label="Email" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input type="password" label="Senha" labelPlacement="floating"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button [routerLink]="['/tabs']" shape="round" expand="block" style="width: 80%; margin-top: 3em;">Entrar</ion-button>
+  </main>
+</ion-content>

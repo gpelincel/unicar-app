@@ -7,30 +7,34 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'motoristas',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../pages/motoristas/motoristas.page').then((m) => m.MotoristasPage),
       },
       {
-        path: 'tab2',
+        path: 'passageiros',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../pages/passageiros/passageiros.page').then((m) => m.PassageirosPage),
       },
       {
-        path: 'tab3',
+        path: 'configuracoes',
         loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+          import('../pages/configuracoes/configuracoes.page').then((m) => m.ConfiguracoesPage),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: 'motoristas', // Redireciona para a rota filha relativa
         pathMatch: 'full',
       },
     ],
   },
   {
-    path: '',
-    redirectTo: '/tabs/tab1',
+    path: '', // Redireciona para /tabs quando a rota raiz é acessada
+    redirectTo: 'tabs',
     pathMatch: 'full',
+  },
+  {
+    path: '**', // Rota para capturar endereços inválidos
+    redirectTo: 'tabs',
   },
 ];
