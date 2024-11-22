@@ -26,4 +26,12 @@ export const routes: Routes = [
     path: 'configuracoes',
     loadComponent: () => import('./pages/configuracoes/configuracoes.page').then( m => m.ConfiguracoesPage)
   },
+  {
+    path: 'cadastro',
+    loadComponent: () => import('./pages/cadastro/cadastro.page').then( m => m.CadastroPage)
+  },
+  {
+    path: 'user',
+    loadComponent: () => import('./pages/user/user.page').then( m => m.UserPage)
+  },
 ];

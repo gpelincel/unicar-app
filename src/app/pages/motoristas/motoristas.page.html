@@ -1,11 +1,14 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
-    <ion-title>Motoristas perto de você</ion-title>
+    <div style="display: flex; align-items: center;">
+      <img height="60px" src="./../../../assets/logo.png" alt="" />
+      <h2>Motoristas perto de você</h2>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list lines="none">
+  <ion-list lines="none" style="height: 100%;">
     <ion-item *ngFor="let user of users">
       <app-card-user [user]="user"></app-card-user>
     </ion-item>
