@@ -2,7 +2,7 @@
   <ion-toolbar>
     <div style="display: flex; align-items: center">
       <img height="60px" src="./../../../assets/logo.png" alt="" />
-      <h2>Crie sua conta!</h2>
+      <h2>Veja mais sobre essa pessoa:</h2>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -14,6 +14,7 @@
         [(ngModel)]="user.nome_completo"
         label="Nome completo"
         labelPlacement="floating"
+        readonly
       ></ion-input>
     </ion-item>
     <ion-item>
@@ -21,6 +22,7 @@
       <ion-input
         [(ngModel)]="user.faculdade"
         label="Faculdade"
+        readonly
         labelPlacement="floating"
       ></ion-input>
     </ion-item>
@@ -29,40 +31,39 @@
       <ion-input
         [(ngModel)]="user.data_nascimento"
         label="Data de Nascimento"
+        readonly
         labelPlacement="floating"
       ></ion-input>
     </ion-item>
     <ion-item>
+      <ion-icon slot="start" name="location-outline"></ion-icon>
+      <ion-input
+        [(ngModel)]="user.cep"
+        type="text"
+        label="CEP"
+        labelPlacement="floating"
+        readonly
+      ></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-icon name="car-sport-outline" slot="start"></ion-icon>
-      <ion-select [(ngModel)]="user.is_motorista" label="Você é motorista?" placeholder="Selecione">
-        <ion-select-option value="1">Sim</ion-select-option>
-        <ion-select-option value="0">Não</ion-select-option>
-      </ion-select>
+      <ion-input readonly [(ngModel)]="user.is_motorista" label="Você é motorista?" placeholder="Selecione">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="person-outline" slot="start"></ion-icon>
-      <ion-select [(ngModel)]="user.is_passageiro" label="Você é passageiro?" placeholder="Selecione">
-        <ion-select-option value="1">Sim</ion-select-option>
-        <ion-select-option value="0">Não</ion-select-option>
-      </ion-select>
+      <ion-input readonly [(ngModel)]="user.is_passageiro" label="Você é passageiro?" placeholder="Selecione">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="mail-outline" slot="start"></ion-icon>
       <ion-input
         [(ngModel)]="user.email"
         label="Email"
+        readonly
         labelPlacement="floating"
       ></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-      <ion-input
-        [(ngModel)]="user.senha"
-        type="password"
-        label="Senha"
-        labelPlacement="floating"
-      ></ion-input>
-    </ion-item>
-    <ion-button (click)="onSubmit()" style="margin: 2em" expand="block">Enviar</ion-button>
+    <ion-button [routerLink]="['/tabs/tabs/passageiros']" style="margin: 2em 2em 0 2em;" expand="block" fill="outline">Voltar</ion-button>
   </ion-list>
 </ion-content>

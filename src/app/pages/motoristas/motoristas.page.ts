@@ -38,13 +38,60 @@ import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-data
   ],
 })
 export class MotoristasPage implements OnInit {
-  users:any = [];
+  users: any[] = [];
+  isModalOpen = false;
+  is_mesma = false;
+  distancia: number = 0;
+
   constructor(private databaseService: RealtimeDatabaseService) {
-    addIcons({ add, optionsOutline })
+    addIcons({optionsOutline});
   }
+
+  onWillDismiss(event: Event): void {}
 
   async ngOnInit() {
     this.users = await this.databaseService.getMotoristas();
-    console.log(this.users);
+    console.log('Usuários carregados:', this.users);
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  filtrarPorFaculdade(faculdade: string): any[] {
+    const faculdadeNormalizada = faculdade.toLowerCase();
+    return this.users.filter(
+      (user: any) =>
+        user?.faculdade?.toLowerCase() === faculdadeNormalizada
+    );
+  }
+
+  filtrarPorDistancia(usuarios: any[], distanciaMaxima: number): any[] {
+    return usuarios.filter(
+      (usuario: any) =>
+        usuario?.distancia !== null &&
+        usuario?.distancia <= distanciaMaxima
+    );
+  }
+
+  filtrar() {
+    let usuariosFiltrados = [...this.users]; // Copiar lista original
+
+    if (this.is_mesma) {
+      usuariosFiltrados = this.filtrarPorFaculdade('Facens');
+    }
+
+    if (this.distancia > 0) {
+      usuariosFiltrados = this.filtrarPorDistancia(usuariosFiltrados, this.distancia);
+    }
+
+    console.log('Usuários filtrados:', usuariosFiltrados);
+    this.users = usuariosFiltrados;
+    this.isModalOpen = false;
+  }
+
+  cancel() {
+    this.isModalOpen = false;
+    this.ngOnInit();
   }
 }

@@ -31,7 +31,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/cadastro/cadastro.page').then( m => m.CadastroPage)
   },
   {
-    path: 'user',
+    path: 'user/:id',
     loadComponent: () => import('./pages/user/user.page').then( m => m.UserPage)
   },
 ];

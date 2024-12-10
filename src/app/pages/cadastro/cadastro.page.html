@@ -33,6 +33,15 @@
       ></ion-input>
     </ion-item>
     <ion-item>
+      <ion-icon slot="start" name="location-outline"></ion-icon>
+      <ion-input
+        [(ngModel)]="user.cep"
+        type="text"
+        label="CEP"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-icon name="car-sport-outline" slot="start"></ion-icon>
       <ion-select [(ngModel)]="user.is_motorista" label="Você é motorista?" placeholder="Selecione">
         <ion-select-option value="1">Sim</ion-select-option>
@@ -41,7 +50,7 @@
     </ion-item>
     <ion-item>
       <ion-icon name="person-outline" slot="start"></ion-icon>
-      <ion-select [(ngModel)]="user.is_passageiro" label="Você é passageiro?" placeholder="Selecione">
+      <ion-select [(ngModel)]="user.is_passageiro" placeholder="Selecione" label="Você é passageiro?">
         <ion-select-option value="1">Sim</ion-select-option>
         <ion-select-option value="0">Não</ion-select-option>
       </ion-select>
@@ -63,6 +72,7 @@
         labelPlacement="floating"
       ></ion-input>
     </ion-item>
-    <ion-button (click)="onSubmit()" style="margin: 2em" expand="block">Enviar</ion-button>
+    <ion-button (click)="onSubmit()" style="margin: 2em 2em 0 2em;" expand="block">Enviar</ion-button>
+    <ion-button [routerLink]="['/']" style="margin: 1em 2em 0 2em;" expand="block" fill="outline">Voltar</ion-button>
   </ion-list>
 </ion-content>

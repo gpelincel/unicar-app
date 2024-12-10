@@ -21,6 +21,8 @@ import {
   calendarOutline,
   carSportOutline,
   closeOutline,
+  locateOutline,
+  locationOutline,
   lockClosedOutline,
   mailOutline,
   personOutline,
@@ -28,6 +30,7 @@ import {
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-database/realtime-database.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -51,6 +54,7 @@ import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-data
     IonButton,
     IonSelect,
     IonSelectOption,
+    RouterLink
   ],
 })
 export class CadastroPage implements OnInit {
@@ -63,7 +67,8 @@ export class CadastroPage implements OnInit {
       schoolOutline,
       mailOutline,
       lockClosedOutline,
-      carSportOutline
+      carSportOutline,
+      locationOutline
     });
   }
 

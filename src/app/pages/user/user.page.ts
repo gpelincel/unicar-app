@@ -28,6 +28,7 @@ import {
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-database/realtime-database.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -51,12 +52,14 @@ import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-data
     IonButton,
     IonSelect,
     IonSelectOption,
+    RouterLink
   ],
 })
 export class UserPage implements OnInit {
   user: any = {};
+  id: any;
 
-  constructor(private firebaseService: RealtimeDatabaseService) {
+  constructor(private firebaseService: RealtimeDatabaseService, private route: ActivatedRoute) {
     addIcons({
       personOutline,
       calendarOutline,
@@ -71,5 +74,19 @@ export class UserPage implements OnInit {
     this.firebaseService.salvarUser(this.user);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+      console.log('ID atualizado:', this.id);
+    });
+
+    
+    if (this.id) {
+      this.firebaseService.getUser(Number(this.id)-1).then((user) => {
+        this.user = user;
+        this.user.is_passageiro = this.user.is_passageiro ? "Sim" : "Não";
+        this.user.is_motorista = this.user.is_motorista ? "Sim" : "Não";
+      });
+    }
+  }
 }

@@ -17,6 +17,7 @@ import { CardUserComponent } from 'src/app/components/card-user/card-user.compon
 import { addIcons } from 'ionicons';
 import { add, carSportOutline, createOutline, optionsOutline, personOutline, exitOutline } from 'ionicons/icons';
 import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-database/realtime-database.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-configuracoes',
@@ -41,12 +42,17 @@ import { RealtimeDatabaseService } from 'src/app/services/firebase/realtime-data
 })
 export class ConfiguracoesPage implements OnInit {
   users:any = [];
-  constructor(private databaseService: RealtimeDatabaseService) {
+  constructor(private databaseService: RealtimeDatabaseService, private router: Router) {
     addIcons({ add, optionsOutline, carSportOutline, personOutline, createOutline, exitOutline })
   }
 
   async ngOnInit() {
     this.users = await this.databaseService.getUsers();
     console.log(this.users);
+  }
+
+  logOut(){
+    sessionStorage.clear();
+    this.router.navigate(['/']);
   }
 }

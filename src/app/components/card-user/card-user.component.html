@@ -1,4 +1,4 @@
-<ion-card style="width: 85vw; display: flex; align-items: center; padding: 1em; gap: 1em;">
+<ion-card (click)="openUser()" style="width: 85vw; display: flex; align-items: center; padding: 1em; gap: 1em;">
   <img style="height: 64px; width: 64px;" src="./../../../assets/user-icon.png" alt="">
   <div>
     <ion-card-header>
@@ -7,6 +7,6 @@
 
     <ion-chip>{{idade}} anos</ion-chip>
     <ion-chip>{{user.faculdade}}</ion-chip>
-    <ion-chip>00 Km</ion-chip>
+    <ion-chip>{{user.distancia}} Km</ion-chip>
   </div>
 </ion-card>

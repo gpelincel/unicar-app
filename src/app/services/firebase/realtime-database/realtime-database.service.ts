@@ -13,11 +13,13 @@ export class RealtimeDatabaseService {
 
   async salvarUser(user: any) {
     let users = await this.getUsers();
-    let id = Number(users.length);
+    let id = Number(users.length)+1;
 
     const db = getDatabase(app);
 
-    set(ref(db, 'users/' + (id+1)), user);
+    user.id = id;
+
+    set(ref(db, 'users/' + id), user);
 
     this.router.navigate(['/tabs/tabs/motoristas']);
   }

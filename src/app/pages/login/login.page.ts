@@ -42,5 +42,7 @@ export class LoginPage implements OnInit {
     addIcons({ mailOutline, lockClosedOutline});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.setItem("CEP", "18550-370");
+  }
 }

@@ -22,6 +22,11 @@ export const routes: Routes = [
           import('../pages/configuracoes/configuracoes.page').then((m) => m.ConfiguracoesPage),
       },
       {
+        path: 'user/:id',
+        loadComponent: () =>
+          import('../pages/user/user.page').then((m) => m.UserPage),
+      },
+      {
         path: '',
         redirectTo: 'motoristas', // Redireciona para a rota filha relativa
         pathMatch: 'full',

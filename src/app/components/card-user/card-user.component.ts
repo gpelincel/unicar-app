@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonList,
   IonCard,
@@ -9,6 +10,7 @@ import {
   IonLabel,
   IonCardTitle,
 } from '@ionic/angular/standalone';
+import { LocationService } from 'src/app/services/location/location.service';
 
 @Component({
   selector: 'app-card-user',
@@ -32,6 +34,9 @@ export class CardUserComponent implements OnInit {
   @Input() user: any;
   idade: any;
   convertBrazilianDateToDate(brazilianDate: string): Date | null {
+    if (!brazilianDate.includes("/")) {
+      return null;
+    }
     const dateParts = brazilianDate.split('/');
 
     // Verificar se a data está no formato esperado
@@ -91,11 +96,16 @@ export class CardUserComponent implements OnInit {
     return yearDifference;
   }
 
-  constructor() {}
+  openUser(){
+    this.router.navigate(['/user', this.user.id]);
+  }
 
-  ngOnInit() {
+  constructor(private router: Router, private locationService: LocationService) {}
+
+  async ngOnInit() {
     this.user.data_nascimento = this.convertBrazilianDateToDate(this.user.data_nascimento);
-
     this.idade = this.getYearDifference(this.user.data_nascimento);
+    console.log(this.user.cep);
+    this.user.distancia = await this.locationService.getDistanceBetweenCEPs(this.user.cep, "18550370");
   }
 }
